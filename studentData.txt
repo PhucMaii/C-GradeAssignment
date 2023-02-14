@@ -1,0 +1,6 @@
+CSTP Summer 2022
+John 2456 WebsiteDevelopment 75 AppliedMathematics 71 ComputerAdmin 85 WorkplaceBehavior 88 Intro2Programming 68
+Merry 3456 WebsiteDevelopment 49 AppliedMathematics 80 ComputerAdmin 72 WorkplaceBehavior 92 Intro2Programming 81
+Ali 4456 WebsiteDevelopment 91 AppliedMathematics 64 ComputerAdmin 83 WorkplaceBehavior 94 Intro2Programming 76
+Jose 5456 WebsiteDevelopment 83 AppliedMathematics 58 ComputerAdmin 75 WorkplaceBehavior 81 Intro2Programming 77
+Sid 6456 WebsiteDevelopment 70 AppliedMathematics 54 ComputerAdmin 70 WorkplaceBehavior 78 Intro2Programming 41
