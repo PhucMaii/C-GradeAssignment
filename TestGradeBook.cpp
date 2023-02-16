@@ -14,13 +14,21 @@ int getRandomID()
 }
 int main()
 {
+	//Course<int> testCourse;
+	//std::cout << "testCourse name is " << testCourse.name;
+
+//	Student<int, 25> st;
+//	st.addCourse("Applied Mathematics", 82);
+
 	srand(time(nullptr));
+	// creating some test data to use later to constructor a test gradebook
 	constexpr size_t numStudents = 10;
 	constexpr size_t numCourses = 3;
 	array<string, numCourses> courseNames{ "Website Development", "Applied Mathematics", "Intro to Programming" };
 	array< array<int, numCourses>, numStudents> grades
 	{
-		{{88, 90, 92},
+		{
+		{88, 90, 92},
 		{39, 55, 67},
 		{69, 49, 85},
 		{70, 72, 77},
@@ -29,13 +37,15 @@ int main()
 		{83, 89, 79},
 		{90, 74, 77},
 		{85, 67, 70},
-		{55, 45, 35}}
+		{55, 45, 35}
+		}
 	};
 
 	array < string, numStudents> studentNames{ "Ali", "Xing", "Sam", "Rose", "Debbi", "Brett", "Prab", "Xu",
 												"Komati", "Sid" };
 
 	GradeBook10_3 testGradeBook("Spring 2022 CSTP");
+	//Gradebook<int, 10, 3> testGradeBook("Spring 2022 CSTP");
 
 	for (int i = 0; i < numStudents; ++i)
 	{
@@ -46,9 +56,12 @@ int main()
 		testGradeBook.addStudent(aStudent);
 
 	}
+
 	testGradeBook.displayMessage();
 	cout << "Output grades per students:\n";
 	testGradeBook.outputGradesPerStudent();
+
+
 
 	cout << "output Average grade per course (Bar chart):";
 	testGradeBook.outputGradeAveragePerCourseBarChart();
@@ -61,7 +74,9 @@ int main()
 
 	cout << "Update AppliedMath grade for Xing: current grade: " <<
 		testGradeBook.getStudentGradeForCourse("Xing", "Applied Mathematics");
-	testGradeBook.updateStudentCourseGrade("Applied Mathematics", "Xing", 45);
+	int xingId = testGradeBook.getStudentID("Xing");
+	testGradeBook.setStudentCourseGrade("Applied Mathematics", "Xing", xingId, 45);
+
 	cout << "...grade after update: " << testGradeBook.getStudentGradeForCourse("Xing", "Applied Mathematics") << endl;
 
 	// test getCourseNames:
@@ -77,7 +92,8 @@ int main()
 	const size_t NumStudents = 5;
 	const size_t nNumCourses = 5;
 	// 3- Load the datafile and build the gradebook:
-	Gradebook<float, NumStudents, nNumCourses> theGradebook = Gradebook<float, NumStudents, nNumCourses>::buildGradeBookFromFile("studentData.txt");
+	Gradebook<float, NumStudents, nNumCourses> theGradebook = 
+				Gradebook<float, NumStudents, nNumCourses>::buildGradeBookFromFile("studentData.txt");
 
 	//test:
 	theGradebook.displayMessage();
@@ -94,12 +110,13 @@ int main()
 	cout << "Student ID for Sid is " << theGradebook.getStudentID("Sid") << endl;
 
 	cout << "Print name of all courses:\n";
-	for (int i = 0; i < numCourses; ++i)
+	for (int i = 0; i < 5; ++i)
 		cout << theGradebook.getCourseNameFromIdx(i) << ", ";
 
 	// set Ali's grade for WebsiteDevelopment to 80 and print his grades for all his courses:
 	cout<<"Ali's grade for Web dev was "<<theGradebook.getStudentGradeForCourse("Ali", "WebsiteDevelopment");
-	theGradebook.setStudentGrade("Ali", 4456, "WebsiteDevelopment", 80);
+	int aliId = testGradeBook.getStudentID("Ali");
+	theGradebook.setStudentCourseGrade("WebsiteDevelopment", "Ali", aliId, 80);
 	cout << "\nAli's grade for Web dev now is " << theGradebook.getStudentGradeForCourse("Ali", "WebsiteDevelopment");
 	cout << endl;
 

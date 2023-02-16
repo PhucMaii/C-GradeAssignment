@@ -11,17 +11,19 @@ struct Course
 {
 	std::string name;
 	T grade;
-	Course(std::string n = "CourseNotSet", T g = T{}) : name(n), grade(g) {}
+	Course(std::string n = "CourseNameNotSet", T g = T{}) : name(n), grade(g) // this is also a default constructor
+	{}  
 };
 
 // represents a student and its grades in all courses she has taken so far.
-template<typename T, size_t NumGrades>
+template<typename T, size_t NumCourses>
 class Student 
 {
-	std::string name;
-	int id;
-	size_t numCoursesSet{};
-	std::array<Course<T>, NumGrades> courses;
+	std::string name;  // student's name
+	int id;       // student's id
+	size_t numCoursesSet{}; // number of courses in the courses list that have been set so far.
+	std::array<Course<T>, NumCourses> courses;
+//	std::vector<Course<T>> courses;
 
 	//Student()   // defauilt constructor is private, so only accessible inside the class
 	//{}
@@ -38,21 +40,24 @@ public:
 	}
 
 	//THis method computes the average grade for all the courses for this student and return it.
-	T computeAverage()
+	T computeAverage() const
 	{
 		T avg{};
-		// your code goes here.
-		for (size_t i = 0; i < numCoursesSet; ++i)
+		for (size_t i = 0; i < NumCourses; ++i)
 		{
 			avg += courses[i].grade;
 		}
-		return avg / static_cast<T>(numCoursesSet);
+		// your code goes here.
+		return avg / NumCourses;
 	}
 
 	void addCourse(std::string coursename, T g)
 	{
-		if(numCoursesSet < NumGrades)
-			courses[numCoursesSet++] = Course<T>(coursename, g);
+		if (numCoursesSet < NumCourses)
+		{
+			courses[numCoursesSet] = Course<T>(coursename, g);
+			++numCoursesSet;
+		}
 	}
 
 	std::string getName() const
@@ -66,14 +71,15 @@ public:
 			name = n;
 	}
 
-	int getId() const
+	void setID(int d)
 	{
-		return id;
+		if (d > 0)
+			id = d;
 	}
 
-	void setId(int id)
+	size_t getID() const
 	{
-		id = id;
+		return id;
 	}
 };
 	
