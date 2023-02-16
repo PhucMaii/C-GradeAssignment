@@ -265,21 +265,21 @@ public:
 	{
 		// your code goes here
 
-		// for (int i = 0; i < NumStudents; ++i)
-		// {
-		// 	if (students[i].getName() == studentName && students[i].getID() == studentID)
-		// 	{
+		for (int i = 0; i < NumStudents; ++i)
+		{
+			if (students[i].getName() == studentName && students[i].getID() == studentID)
+			{
 
-		// 		for (int j = 0; j < NumCourses; ++j)
-		// 		{
-		// 			if (students[i].getCourse(j).name == courseName)
-		// 			{
+				for (int j = 0; j < NumCourses; ++j)
+				{
+					if (students[i].getCourse(j).name == courseName)
+					{
 						
-		// 				students[i].getCourse(j).grade = newgrade;
-		// 			}
-		// 		}
-		// 	}
-		// }
+						students[i].setCourseGrade(courseName, newgrade);
+					}
+				}
+			}
+		}
 	}
 
 	// This function builds a gradebook using the data in the inputfile. The type of grades is given as template argument T
