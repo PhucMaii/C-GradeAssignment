@@ -33,7 +33,20 @@ public:
 	{
 		std::cout << "Student : ("<<name<<", "<<id<<") created\n"; 
 	}
-
+	
+	void setCourseGrade(std::string courseName, T val)
+	{
+		for(auto i = 0; i < NumCourses; ++i)
+		{
+			if (courses[i].name == courseName)
+			{
+				courses[i].grade = val;
+			}
+		}
+		
+		
+	}
+	
 	Course<T> getCourse(size_t idx) const
 	{
 		return courses.at(idx);
